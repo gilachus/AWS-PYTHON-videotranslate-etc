@@ -1,12 +1,20 @@
 import boto3
-import urllib.request, json
 
-client = boto3.client('translate')
 
-job_name = "transcribe_3971f3f57d2046a9bf30b1750dafe606_mi_job"
-job = transcribe.get_transcription_job(TranscriptionJobName=job_name)
-json_uri = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
+s3 = boto3.client('s3')
+translate = boto3.client('translate')
 
-with urllib.request.urlopen(json_uri) as url:
-    data = json.loads(url.read().decode())
-    print(data)
+# with open('transcripcion.txt', 'r') as f:
+# 	s3.upload_file('gilvideotranslate1', 'transcripcion.txt', f)
+
+text=""
+with open('transcripcion.txt', 'r') as f:
+	text=f.read()
+
+
+response = translate.translate_text(Text=text, SourceLanguageCode="en", TargetLanguageCode="es")
+
+result=response['TranslatedText']
+
+with open('traduccion.txt', 'w') as f:
+	f.write(result)
