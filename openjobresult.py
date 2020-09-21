@@ -1,5 +1,4 @@
 import boto3
-import requests
 import json
 
 transcribe = boto3.client('transcribe')
