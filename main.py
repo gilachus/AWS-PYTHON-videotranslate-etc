@@ -11,10 +11,12 @@ print(job_name)
 
 # "The S3 object location of the input media file. The URI must be in the same region as the API endpoint that you are calling."
 # no usar caracteres especiales para los nombres de archivos, haber creado el bucket en us-east-1 (para que funcione por defecto según yo)
-mediafile_uri = "s3://gilvideotranslate1/Life-in-Middle-Ages-and-Mass-MUS-630.mp4" # esto lo copie desde la consola s3 donde esta el archivo
+mediafile_uri = "s3://gilvideotranslate1/Hello World in Python Python Tutorial Python Programming.mp4" # esto lo copie desde la consola s3 donde esta el archivo
+bucket_name="gilvideotranslate1"
 transcribe.start_transcription_job(
     TranscriptionJobName=job_name,
     Media={'MediaFileUri': mediafile_uri},
+    OutputBucketName=bucket_name,
     MediaFormat='mp4',
     LanguageCode='en-US'
 )
