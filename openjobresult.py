@@ -12,7 +12,7 @@ job_status = job['TranscriptionJob']['TranscriptionJobStatus']
 
 def guardar_archivo(json_uri):
 	with open('respuesta.json', 'wb') as f:
-		s3.download_fileobj('gilvideotranslate1', 'transcribe_3971f3f57d2046a9bf30b1750dafe606_mi_job'+'.json', f)
+		s3.download_fileobj('gilvideotranslate1', job_name +'.json', f)
 
 def leer_json(file="respuesta.json"):		
 	with open(file) as json_file:
